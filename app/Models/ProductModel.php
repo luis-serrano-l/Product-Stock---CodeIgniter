@@ -21,5 +21,11 @@ class ProductModel extends Model {
     public function deleteProduct($id) {
         $this->where('id', $id)->delete();
     }
+
+    public function searchProducts($keyword) {
+        return $this->table('products')
+            ->like('name', $keyword)
+            ->get()->getResultArray();
+    }
 }
 

@@ -78,5 +78,18 @@ class Product extends BaseController
 
     public function search()
     {
+        helper('form');
+
+        $model = new ProductModel();
+
+        $keyword = $this->request->getVar('keyword');
+
+        if ($keyword) {
+            $products = $model->searchProducts($keyword);
+        } else {
+            $products = $model->getProducts();
+        }
+
+        return view('products/index', ['products' => $products]);
     }
 }

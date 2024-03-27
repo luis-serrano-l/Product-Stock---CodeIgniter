@@ -9,6 +9,11 @@
 
 <body>
     <h1>Products</h1>
+    <?= form_open('products/search') ?>
+    <label for="keyword"></label>
+    <input type="text" placeholder="Search" name="keyword">
+    <input type="submit" value="Submit">
+    <?= form_close() ?>
     <?php foreach ($products as $product): ?>
         <table>
             <tr>
