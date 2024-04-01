@@ -76,6 +76,40 @@ class Product extends BaseController
         return redirect()->to('/products');
     }
 
+    public function add($id)
+    {
+        helper('form');
+
+        $model = new ProductModel();
+
+        $data = [
+            'name' => $this->request->getVar('name'),
+            'qty' => intval($this->request->getVar('qty')) + 1
+        ];
+
+        $model->update($id, $data);
+
+        return redirect()->to('/products');
+    }
+
+    public function subtract($id)
+    {
+        helper('form');
+
+        $model = new ProductModel();
+
+        if (intval($this->request->getVar('qty')) > 0) {
+            $data = [
+                'name' => $this->request->getVar('name'),
+                'qty' => intval($this->request->getVar('qty')) - 1
+            ];
+
+            $model->update($id, $data);
+        }
+
+        return redirect()->to('/products');
+    }
+
     public function search()
     {
         helper('form');

@@ -20,21 +20,30 @@
                 <td>
                     <?= $product['name'] ?>
                 </td>
-                <td>
+                <td class="qty-column">
                     <?= $product['qty'] ?>
                 </td>
-                <td>
+                <td class="add-subtract-buttons">
+                    <form action="<?= base_url('products/add/' . $product['id']) ?>" method="POST">
+                        <input type="hidden" name="name" value="<?= $product['name'] ?>" required>
+                        <input type="hidden" step="1" min="1" name="qty" value="<?= $product['qty'] ?>" required>
+                        <input type="submit" value="+">
+                    </form>
+                    <form action="<?= base_url('products/subtract/' . $product['id']) ?>" method="POST">
+                        <input type="hidden" name="name" value="<?= $product['name'] ?>" required>
+                        <input type="hidden" step="1" min="1" name="qty" value="<?= $product['qty'] ?>" required>
+                        <input type="submit" value="-">
+                    </form>
+                </td>
+                <td class="action-buttons">
                     <a href="<?= base_url('products/edit/' . $product['id']) ?>">Edit</a>
-                </td>
-                <td>
                     <a href="<?= base_url('products/view/' . $product['id']) ?>">Show</a>
-                </td>
-                <td>
                     <form action="<?= base_url('products/delete/' . $product['id']) ?>" method="post">
                         <input type="hidden" name="_method" value="DELETE">
                         <button type="submit">Delete</button>
                     </form>
                 </td>
+
             </tr>
         </table>
 
@@ -43,6 +52,3 @@
 </body>
 
 </html>
-
-<!-- <h2><a href="?= base_url('products/show/') . $product['id'] ?>">?= $product['name'] ?> </a></h2>
-        <p>Quantit?= $product['qty']?></p> -->
